@@ -88,4 +88,15 @@ galleryList.innerHTML = markupGallery;
 
 galleryList.addEventListener('click', event => {
   event.preventDefault();
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
+  const bigImageUrl = event.target.dataset.source;
+  console.log(bigImageUrl);
+
+  const instance = basicLightbox.create(`
+    <img src="${bigImageUrl}" alt="${event.target.alt}">
+  `);
+
+  instance.show();
 });
