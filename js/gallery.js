@@ -66,13 +66,26 @@ const images = [
   },
 ];
 
-// <li class="gallery-item">
-//   <a class="gallery-link" href="large-image.jpg">
-//     <img
-//       class="gallery-image"
-//       src="small-image.jpg"
-//       data-source="large-image.jpg"
-//       alt="Image description"
-//     />
-//   </a>
-// </li>;
+const galleryList = document.querySelector('.gallery');
+
+const markupGallery = images
+  .map(({ preview, original, description }) => {
+    return `
+<li class="gallery-item">
+  <a class="gallery-link" href="${original}">
+    <img
+      class="gallery-image"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
+    />
+  </a>
+</li>`;
+  })
+  .join('');
+
+galleryList.innerHTML = markupGallery;
+
+galleryList.addEventListener('click', event => {
+  event.preventDefault();
+});
